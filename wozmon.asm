@@ -1,13 +1,8 @@
 ;		  
 ; EWoz Monitor SYMON monitor version
-; Dr. M.Peker 2025 
 ; Ported from Hans Otten, 2024
-;
-; Modified to work on the symon or Standalone
-;
 ; Idea and this version by Ronny Ribeiro, placed in the unused space in KIM tape ROM at $1AA0
 ; X command returns to KIM monitor
-;
 ; Based upon a version by Jim McClanahan, W4JBM, April 2021
 ;
 ; Based on EWoz 1.0 by fsafstrom, March 2007. Relevant notes from original:
@@ -71,6 +66,8 @@ SADDR   = 	COUNTR+1
 ;
 IN		= 	$0300
 
+
+; To run in ROM change .ORG line below. And add your own vertor table to end of code!!!!
 		.ORG $1000
 
 			SEI 	   ; Disable interrupts
@@ -200,7 +197,7 @@ XAMNXT		STX 	MODE
      		BNE MD8CHK			; increment examine index
      		INC $31
 MD8CHK		LDA $30
-     		AND #$0F
+     		AND #$07            ; 8 Data columns in every line (like original)
      		BPL NXTPRN
 PRBYTE		PHA					; save A for LSD
      		LSR A
@@ -296,3 +293,4 @@ WAIT_RX
         RTS
 			
 			.END
+
