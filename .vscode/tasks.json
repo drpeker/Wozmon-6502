@@ -1,0 +1,26 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Assemble Z80 with TASM",
+            "type": "shell",
+            "command": "tasm",
+            "args": [
+                "-65",                               
+                "-h",   // -b for binary, -h for hex                             
+                "${file}",                           
+                "${fileBasenameNoExtension}.obj",    
+                "${fileBasenameNoExtension}.lst"     
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        }
+    ]
+}
